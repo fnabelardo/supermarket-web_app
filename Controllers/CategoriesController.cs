@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MVCCourse.Models;
 
 namespace MVCCourse.Controllers;
 
@@ -9,19 +10,11 @@ public class CategoriesController : Controller
     {
         return View();
     }
+
     // GET
     public IActionResult Edit(int? id)
     {
-        if (id != null)
-        {
-            return new ContentResult { Content = id.ToString() };
-        }
-        else
-        {
-            return new ContentResult { Content = "null content" };
-        }
-
-
-
+        var category = new Category { CategoryId = id.HasValue ? id.Value : 0 }; //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression)
+        return View(category);
     }
 }
