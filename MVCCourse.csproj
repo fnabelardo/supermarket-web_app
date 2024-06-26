@@ -9,4 +9,8 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\lib\bootstrap\" />
+    </ItemGroup>
 </Project>
