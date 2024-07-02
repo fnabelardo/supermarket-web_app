@@ -19,7 +19,6 @@ public class CategoriesController : Controller
     public IActionResult Edit(int? id)
     {
         var category = CategoriesRepository.GetCategoryById(id.HasValue ? id.Value : 0); //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression) 
-        // var category = new Category { CategoryId = id.HasValue ? id.Value : 0 }; //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression)
         return View(category);
     }
     

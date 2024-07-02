@@ -37,7 +37,7 @@ public static class CategoriesRepository
     public static void UpdateCategory(int categoryId, Category category)
     {
         if (categoryId != category.CategoryId) return;
-        var categoryToUpdate = GetCategoryById(categoryId);
+        var categoryToUpdate = _categories.FirstOrDefault(x => x.CategoryId == categoryId );
         if (categoryToUpdate == null) return;
         categoryToUpdate.Name = category.Name;
         categoryToUpdate.Description = category.Description;
