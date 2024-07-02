@@ -18,7 +18,7 @@ public static class CategoriesRepository
 
     public static List<Category> GetCategories() => _categories;
 
-    private static Category? GetCategoryById(int categoryId)
+    public static Category? GetCategoryById(int categoryId)
     {
         var category = _categories.FirstOrDefault(x => x.CategoryId == categoryId);
         if (category != null)
