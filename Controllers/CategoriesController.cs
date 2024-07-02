@@ -22,4 +22,11 @@ public class CategoriesController : Controller
         // var category = new Category { CategoryId = id.HasValue ? id.Value : 0 }; //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression)
         return View(category);
     }
+    
+    [HttpPost]
+    public IActionResult Edit(Category category)
+    {
+        CategoriesRepository.UpdateCategory(category.CategoryId, category);
+        return RedirectToAction(nameof(Index));
+    }
 }
