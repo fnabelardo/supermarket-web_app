@@ -13,4 +13,10 @@
     <ItemGroup>
       <Folder Include="wwwroot\lib\bootstrap\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Products\Add.cshtml" />
+      <AdditionalFiles Include="Views\Products\Edit.cshtml" />
+      <AdditionalFiles Include="Views\Products\Index.cshtml" />
+    </ItemGroup>
 </Project>
