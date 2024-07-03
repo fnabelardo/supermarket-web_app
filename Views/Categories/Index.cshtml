@@ -26,7 +26,7 @@
                     <td><a class="btn btn-link" asp-controller="categories" asp-action="Edit" 
                            asp-route-id="@category.CategoryId">Edit</a></td>
                     <td><a class="btn btn-link" asp-controller="categories" asp-action="Delete" 
-                           asp-route-categoryid="@category.CategoryId">Delete</a></td>
+                           asp-route-categoryid="@category.CategoryId" onclick=" return confirmDelete()">Delete</a></td>
                 </tr>
             }
         </tbody>
@@ -36,3 +36,12 @@
 <br/>
 
 <a class="btn btn-primary" asp-controller="Categories" asp-action="Add">Add</a>
+
+@section Scripts
+{
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this category?")
+        }
+    </script>
+}
