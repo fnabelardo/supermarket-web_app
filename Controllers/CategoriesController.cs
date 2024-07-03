@@ -18,6 +18,7 @@ public class CategoriesController : Controller
     // GET
     public IActionResult Edit(int? id)
     {
+        ViewBag.Action = "Edit";
         var category = CategoriesRepository.GetCategoryById(id.HasValue ? id.Value : 0); //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression) 
         return View(category);
     }
@@ -35,6 +36,7 @@ public class CategoriesController : Controller
     
     public IActionResult Add()
     {
+        ViewBag.Action = "Add";
         return View();
     }
     
