@@ -17,21 +17,47 @@ public static class ProductRepository
         _products.Add(product);
     }
 
-    public static List<Product> GetProducts() => _products;
+    public static List<Product> GetProducts(bool loadCategory = false)
+    {
+        if (!loadCategory)
+        {
+            return _products;
+        }
 
-    public static Product? GetProductById(int productId)
+        if (_products.Any())
+        {
+            _products.ForEach(x =>
+            {
+                if (x.CategoryId.HasValue)
+                {
+                    x.Category = CategoriesRepository.GetCategoryById(x.CategoryId.Value);
+                }
+
+            });
+        }
+        return _products ?? new List<Product>();
+    }
+
+    public static Product? GetProductById(int productId, bool loadCategory = false)
     {
         var product = _products.FirstOrDefault(x => x.ProductId == productId);
         if (product != null)
         {
-            return new Product()
+            var prod = new Product()
             {
                 ProductId = product.ProductId,
                 Name = product.Name,
-                CategoryId = product.CategoryId,
                 Quantity = product.Quantity,
-                Price = product.Price
+                Price = product.Price,
+                CategoryId = product.CategoryId
             };
+
+            if (loadCategory && prod.CategoryId.HasValue)
+            {
+                prod.Category = CategoriesRepository.GetCategoryById(prod.CategoryId.Value);
+            }
+
+            return prod;
         }
 
         return null;

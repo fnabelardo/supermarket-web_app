@@ -8,7 +8,7 @@ public class ProductsController : Controller
     // GET
     public IActionResult Index()
     {
-        var products = ProductRepository.GetProducts();
+        var products = ProductRepository.GetProducts(loadCategory: true);
         return View(products);
     }
 
