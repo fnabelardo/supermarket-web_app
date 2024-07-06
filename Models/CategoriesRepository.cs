@@ -11,8 +11,15 @@ public static class CategoriesRepository
 
     public static void AddCategory(Category category)
     {
-        var maxId = _categories.Max(x => x.CategoryId);
-        category.CategoryId = maxId + 1;
+        if (_categories is { Count: > 0 })
+        {
+            var maxId = _categories.Max(x => x.CategoryId);
+            category.CategoryId = maxId + 1;
+        }
+        else
+        {
+            category.CategoryId = 1;
+        }
         _categories.Add(category);
     }
 
@@ -37,7 +44,7 @@ public static class CategoriesRepository
     public static void UpdateCategory(int categoryId, Category category)
     {
         if (categoryId != category.CategoryId) return;
-        var categoryToUpdate = _categories.FirstOrDefault(x => x.CategoryId == categoryId );
+        var categoryToUpdate = _categories.FirstOrDefault(x => x.CategoryId == categoryId);
         if (categoryToUpdate == null) return;
         categoryToUpdate.Name = category.Name;
         categoryToUpdate.Description = category.Description;

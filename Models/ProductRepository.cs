@@ -12,8 +12,16 @@ public static class ProductRepository
 
     public static void AddProduct(Product product)
     {
-        var maxId = _products.Max(x => x.ProductId);
-        product.ProductId = maxId + 1;
+        if (_products is { Count: > 0 })
+        {
+            var maxId = _products.Max(x => x.ProductId);
+            product.ProductId = maxId + 1;
+        }
+        else
+        {
+            product.ProductId = 1;
+        }
+
         _products.Add(product);
     }
 
