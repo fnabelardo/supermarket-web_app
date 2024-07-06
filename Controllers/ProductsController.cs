@@ -47,14 +47,16 @@ public class ProductsController : Controller
     }
     
     [HttpPost]
-    public IActionResult Add(Product product)
+    public IActionResult Add(ProductViewModel productViewModel)
     {
         if (ModelState.IsValid)
         {
-            ProductRepository.AddProduct(product);
+            ProductRepository.AddProduct(productViewModel.Product);
             return RedirectToAction(nameof(Index));
         }
-        return View(product);
+
+        productViewModel.Categories = CategoriesRepository.GetCategories();
+        return View(productViewModel);
     }
     
     public IActionResult Delete(int productId)
