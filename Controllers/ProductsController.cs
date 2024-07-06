@@ -20,19 +20,26 @@ public class ProductsController : Controller
     public IActionResult Edit(int? id)
     {
         ViewBag.Action = "Edit";
-        var product = ProductRepository.GetProductById(id.HasValue ? id.Value : 0); //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression) 
-        return View(product);
+        var productViewModel = new ProductViewModel
+        {
+            Categories = CategoriesRepository.GetCategories(),
+            Product = ProductRepository.GetProductById(id ?? 0) ?? new Product()
+        };
+        
+        return View(productViewModel);
     }
     
     [HttpPost]
-    public IActionResult Edit(Product product)
+    public IActionResult Edit(ProductViewModel productViewModel)
     {
         if (ModelState.IsValid)
         {
-            ProductRepository.UpdateProduct(product.ProductId, product);
+            ProductRepository.UpdateProduct(productViewModel.Product.ProductId, productViewModel.Product);
             return RedirectToAction(nameof(Index));
         }
-        return View(product);
+        ViewBag.Action = "Edit";
+        productViewModel.Categories = CategoriesRepository.GetCategories();
+        return View(productViewModel);
     }
     
     public IActionResult Add()

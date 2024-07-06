@@ -1,10 +1,10 @@
-@model Product
+@model ProductViewModel
 
 @if (Model != null)
     {
         @section title
         {
-            <h3> Product: @Model.Name </h3>
+            <h3> Product: @Model.Product.Name </h3>
         }
         <br/>
         <partial name="_Form" model="@Model"/>
