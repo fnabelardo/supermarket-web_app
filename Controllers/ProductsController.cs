@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MVCCourse.Models;
+using MVCCourse.ViewModels;
 
 namespace MVCCourse.Controllers;
 
@@ -37,7 +38,12 @@ public class ProductsController : Controller
     public IActionResult Add()
     {
         ViewBag.Action = "Add";
-        return View();
+        var productViewModel = new ProductViewModel()
+        {
+            Categories = CategoriesRepository.GetCategories()
+        };
+        
+        return View(productViewModel);
     }
     
     [HttpPost]
