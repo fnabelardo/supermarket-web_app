@@ -54,7 +54,7 @@ public class ProductsController : Controller
             ProductRepository.AddProduct(productViewModel.Product);
             return RedirectToAction(nameof(Index));
         }
-
+        ViewBag.Action = "Add";
         productViewModel.Categories = CategoriesRepository.GetCategories();
         return View(productViewModel);
     }
