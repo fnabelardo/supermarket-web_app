@@ -30,7 +30,7 @@
                     <td><a class="btn btn-link" asp-controller="Products" asp-action="Edit" 
                            asp-route-id="@product.ProductId">Edit</a></td>
                     <td><a class="btn btn-link" asp-controller="Products" asp-action="Delete" 
-                           asp-route-categoryid="@product.ProductId" onclick=" return confirmDelete()">Delete</a></td>
+                           asp-route-productid="@product.ProductId" onclick=" return confirmDelete()">Delete</a></td>
                 </tr>
             }
         </tbody>
@@ -45,7 +45,7 @@
 {
     <script>
         function confirmDelete() {
-            return confirm("Are you sure you want to delete this category?")
+            return confirm("Are you sure you want to delete this product?")
         }
     </script>
 }
