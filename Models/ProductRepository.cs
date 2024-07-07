@@ -90,4 +90,16 @@ public static class ProductRepository
             _products.Remove(product);
         }
     }
+
+    public static List<Product> GetProductsByCategoryId(int categoryId)
+    {
+        var product = _products.Where(x => x.CategoryId == categoryId);
+        if (product != null)
+        {
+            return product.ToList();
+        }
+
+        //return new List<Product>(); => return [];
+        return [];
+    }
 }
