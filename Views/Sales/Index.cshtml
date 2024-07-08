@@ -26,7 +26,7 @@
             }
         </select>
         <br/>
-        <div>
+        <div id="productsPartialList">
             @* Product List *@
         </div>
         <div>
@@ -35,7 +35,18 @@
         @* Sales form *@
     </div>
     <div class="col">
-       @* List of transactions *@ 
+        @* List of transactions *@ 
     </div>
 
 </div>
+
+ @section Scripts{
+     <script>
+         $(function() {
+           //Populate product partial list
+           $("#SelectedCategoryId").on("change", function () {
+               $("#productsPartialList").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()})
+           })
+         });
+     </script>
+ }
