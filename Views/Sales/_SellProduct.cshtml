@@ -1,0 +1,10 @@
+@model Product
+
+<div class="form-group">
+    <label asp-for="Name"></label>
+    <input class="form-control" asp-for="Name" type="text" readonly="readonly"/>
+</div>
+<div class="form-group">
+    <label asp-for="Price"></label>
+    <input class="form-control" id="price" type="text" readonly="readonly" value="@(string.Format("{0:c}", @Model.Price))"/> <!-- @*string interpolation value="@($"{@Model.Price:c}")"*@ -->
+</div>

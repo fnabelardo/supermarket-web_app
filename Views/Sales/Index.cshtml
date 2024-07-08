@@ -29,7 +29,7 @@
         <div id="productsPartialList">
             @* Product List *@
         </div>
-        <div id="productDetails">
+        <div id="productDetailPartial">
             @* Product Details *@
         </div>
         @* Sales form *@
@@ -46,7 +46,8 @@
            //Handel category selection
            // Populate product partial list
            $("#SelectedCategoryId").on("change", function () {
-               $("#productsPartialList").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()})
+               $("#productsPartialList").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()});
+               $("#productDetailPartial").empty();
            })
            //END Handel category selection
            
@@ -59,7 +60,13 @@
                $(this).addClass('highlight');
                
                //Show product details form
+               //Get the product ID from the "product-id" attr of the clicked row
                let productId = $(this).attr('product-id');
+               
+               //Load the details of the product
+               $("#productDetailPartial").load("/sales/SellProductPartial", {productId: productId});
+               
+               //END Show product details form
            })
            //END Handle product selection
          });

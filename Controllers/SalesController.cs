@@ -15,4 +15,10 @@ public class SalesController : Controller
         };
         return View(salesViewModel);
     }
+    
+    public IActionResult SellProductPartial(int productId)
+    {
+        var product = ProductRepository.GetProductById(productId);
+        return PartialView("_SellProduct", product);
+    }
 }
