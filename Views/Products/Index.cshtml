@@ -4,6 +4,7 @@
 {
     <h3> Products </h3>
 }
+
 <br/>
 
 @if (Model.Any())
@@ -21,18 +22,26 @@
         </thead>
         <tbody>
         @foreach (var product in Model)
-            {
-                <tr>
-                    <td>@product.Category?.Name</td>
-                    <td>@product.Name</td>
-                    <td>@product.Price?.ToString("c")</td>
-                    <td>@product.Quantity</td>
-                    <td><a class="btn btn-link" asp-controller="Products" asp-action="Edit" 
-                           asp-route-id="@product.ProductId">Edit</a></td>
-                    <td><a class="btn btn-link" asp-controller="Products" asp-action="Delete" 
-                           asp-route-productid="@product.ProductId" onclick=" return confirmDelete()">Delete</a></td>
-                </tr>
-            }
+        {
+            <tr>
+                <td>@product.Category?.Name</td>
+                <td>@product.Name</td>
+                <td>@product.Price?.ToString("c")</td>
+                <td>@product.Quantity</td>
+                <td>
+                    <a class="btn btn-link" asp-controller="Products" asp-action="Edit"
+                       asp-route-id="@product.ProductId">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-link" asp-controller="Products" asp-action="Delete"
+                       asp-route-productid="@product.ProductId" onclick=" return confirmDelete()">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 }

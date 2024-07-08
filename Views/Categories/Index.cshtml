@@ -4,6 +4,7 @@
 {
     <h3> Categories </h3>
 }
+
 <br/>
 
 @if (Model.Any())
@@ -19,16 +20,24 @@
         </thead>
         <tbody>
         @foreach (var category in Model)
-            {
-                <tr>
-                    <td>@category.Name</td>
-                    <td>@category.Description</td>
-                    <td><a class="btn btn-link" asp-controller="categories" asp-action="Edit" 
-                           asp-route-id="@category.CategoryId">Edit</a></td>
-                    <td><a class="btn btn-link" asp-controller="categories" asp-action="Delete" 
-                           asp-route-categoryid="@category.CategoryId" onclick=" return confirmDelete()">Delete</a></td>
-                </tr>
-            }
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.Description</td>
+                <td>
+                    <a class="btn btn-link" asp-controller="categories" asp-action="Edit"
+                       asp-route-id="@category.CategoryId">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-link" asp-controller="categories" asp-action="Delete"
+                       asp-route-categoryid="@category.CategoryId" onclick=" return confirmDelete()">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 }

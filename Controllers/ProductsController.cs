@@ -25,10 +25,10 @@ public class ProductsController : Controller
             Categories = CategoriesRepository.GetCategories(),
             Product = ProductRepository.GetProductById(id ?? 0) ?? new Product()
         };
-        
+
         return View(productViewModel);
     }
-    
+
     [HttpPost]
     public IActionResult Edit(ProductViewModel productViewModel)
     {
@@ -37,11 +37,12 @@ public class ProductsController : Controller
             ProductRepository.UpdateProduct(productViewModel.Product.ProductId, productViewModel.Product);
             return RedirectToAction(nameof(Index));
         }
+
         ViewBag.Action = "Edit";
         productViewModel.Categories = CategoriesRepository.GetCategories();
         return View(productViewModel);
     }
-    
+
     public IActionResult Add()
     {
         ViewBag.Action = "Add";
@@ -49,10 +50,10 @@ public class ProductsController : Controller
         {
             Categories = CategoriesRepository.GetCategories()
         };
-        
+
         return View(productViewModel);
     }
-    
+
     [HttpPost]
     public IActionResult Add(ProductViewModel productViewModel)
     {
@@ -61,21 +62,21 @@ public class ProductsController : Controller
             ProductRepository.AddProduct(productViewModel.Product);
             return RedirectToAction(nameof(Index));
         }
+
         ViewBag.Action = "Add";
         productViewModel.Categories = CategoriesRepository.GetCategories();
         return View(productViewModel);
     }
-    
+
     public IActionResult Delete(int productId)
     {
         ProductRepository.DeleteProduct(productId);
         return RedirectToAction(nameof(Index));
     }
-    
+
     public IActionResult ProductsByCategoryPartial(int categoryId)
     {
         var products = ProductRepository.GetProductsByCategoryId(categoryId);
         return PartialView("_Products", products);
     }
-    
 }

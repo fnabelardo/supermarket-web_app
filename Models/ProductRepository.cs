@@ -40,9 +40,9 @@ public static class ProductRepository
                 {
                     x.Category = CategoriesRepository.GetCategoryById(x.CategoryId.Value);
                 }
-
             });
         }
+
         return _products ?? new List<Product>();
     }
 
@@ -74,7 +74,7 @@ public static class ProductRepository
     public static void UpdateProduct(int productId, Product product)
     {
         if (productId != product.ProductId) return;
-        var productToUpdate = _products.FirstOrDefault(x => x.ProductId == productId );
+        var productToUpdate = _products.FirstOrDefault(x => x.ProductId == productId);
         if (productToUpdate == null) return;
         productToUpdate.Name = product.Name;
         productToUpdate.Quantity = product.Quantity;

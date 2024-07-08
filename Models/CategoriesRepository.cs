@@ -20,6 +20,7 @@ public static class CategoriesRepository
         {
             category.CategoryId = 1;
         }
+
         _categories.Add(category);
     }
 

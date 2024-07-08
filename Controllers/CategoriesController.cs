@@ -19,10 +19,13 @@ public class CategoriesController : Controller
     public IActionResult Edit(int? id)
     {
         ViewBag.Action = "Edit";
-        var category = CategoriesRepository.GetCategoryById(id.HasValue ? id.Value : 0); //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression) 
+        var category =
+            CategoriesRepository.GetCategoryById(id.HasValue
+                ? id.Value
+                : 0); //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression) 
         return View(category);
     }
-    
+
     [HttpPost]
     public IActionResult Edit(Category category)
     {
@@ -31,15 +34,16 @@ public class CategoriesController : Controller
             CategoriesRepository.UpdateCategory(category.CategoryId, category);
             return RedirectToAction(nameof(Index));
         }
+
         return View(category);
     }
-    
+
     public IActionResult Add()
     {
         ViewBag.Action = "Add";
         return View();
     }
-    
+
     [HttpPost]
     public IActionResult Add(Category category)
     {
@@ -48,13 +52,13 @@ public class CategoriesController : Controller
             CategoriesRepository.AddCategory(category);
             return RedirectToAction(nameof(Index));
         }
+
         return View(category);
     }
-    
+
     public IActionResult Delete(int categoryId)
     {
         CategoriesRepository.DeleteCategory(categoryId);
         return RedirectToAction(nameof(Index));
     }
-    
 }
