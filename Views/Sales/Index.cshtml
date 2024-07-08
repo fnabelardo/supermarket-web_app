@@ -43,10 +43,20 @@
  @section Scripts{
      <script>
          $(function() {
-           //Populate product partial list
+           //Handel category selection
+           // Populate product partial list
            $("#SelectedCategoryId").on("change", function () {
                $("#productsPartialList").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()})
            })
+           //END Handel category selection
+           
+           //Handle product selection
+           //Change the background color of the selected product          
+           $('#productsPartialList').on('click', '.product-row', function () {
+               $('.product-row').removeClass('highlight');
+               $(this).addClass('highlight');
+           })
+           //END Handle product selection
          });
      </script>
  }
