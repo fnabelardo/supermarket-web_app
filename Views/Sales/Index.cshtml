@@ -29,7 +29,7 @@
         <div id="productsPartialList">
             @* Product List *@
         </div>
-        <div>
+        <div id="productDetails">
             @* Product Details *@
         </div>
         @* Sales form *@
@@ -53,8 +53,13 @@
            //Handle product selection
            //Change the background color of the selected product          
            $('#productsPartialList').on('click', '.product-row', function () {
+               
+               //Highlight selected product
                $('.product-row').removeClass('highlight');
                $(this).addClass('highlight');
+               
+               //Show product details form
+               let productId = $(this).attr('product-id');
            })
            //END Handle product selection
          });
