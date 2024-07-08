@@ -22,6 +22,9 @@
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Sales" asp-action="Index">Sell</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-controller="Categories" asp-action="Index">Categories</a>
                     </li>
                     <li class="nav-item">
@@ -43,6 +46,8 @@
 </div>
 </body>
 <div>
-    @await RenderSectionAsync("Scripts", required:false)
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </div>
-</html> 
+</html>
