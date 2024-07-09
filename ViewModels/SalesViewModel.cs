@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using MVCCourse.Models;
+using MVCCourse.ViewModels.Validations;
 
 namespace MVCCourse.ViewModels;
 
@@ -11,5 +12,6 @@ public class SalesViewModel
 
     [Range(1, int.MaxValue)]
     [Display(Name = "Quantity")]
+    [SalesViewModel_EnsureProperQuantity]
     public int QuantityToSell { get; set; }
 }
