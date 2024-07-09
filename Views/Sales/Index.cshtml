@@ -62,12 +62,17 @@
              $("#formSale").hide();
              $("#QuantityToSell").val("");
              
+             //Load the products if category is already selected
+             var selectedCategoryId = $("#SelectedCategoryId").val();
+             
+             if (selectedCategoryId > 0){
+                 loadProducts(selectedCategoryId);
+             }
+             
            //Handel category selection
            // Populate product partial list
            $("#SelectedCategoryId").on("change", function () {
-               $("#productsPartialList").load("/products/ProductsByCategoryPartial", {categoryId: $(this).val()});
-               $("#productDetailPartial").empty();
-               $("#formSale").hide();
+               loadProducts($(this).val());
            })
            //END Handel category selection
            
@@ -99,5 +104,11 @@
            })
            //END Handle product selection
          });
+         
+         function loadProducts(categoryId) {
+             $("#productsPartialList").load("/products/ProductsByCategoryPartial", {categoryId: categoryId});
+             $("#productDetailPartial").empty();
+             $("#formSale").hide();
+          }
      </script>
 }

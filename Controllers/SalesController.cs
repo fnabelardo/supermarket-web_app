@@ -29,6 +29,9 @@ public class SalesController : Controller
             //Sell the product
         }
 
+        var product = ProductRepository.GetProductById(salesViewModel.SelectedProductId);
+        salesViewModel.SelectedCategoryId = product?.CategoryId == null ? 0 : product.CategoryId.Value;
+        salesViewModel.Categories = CategoriesRepository.GetCategories();
         return View("Index", salesViewModel);
     }
 }
