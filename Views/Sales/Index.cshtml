@@ -72,6 +72,9 @@
            //Handel category selection
            // Populate product partial list
            $("#SelectedCategoryId").on("change", function () {
+               
+               //Clear validation messages
+               clearValidationMessages();
                loadProducts($(this).val());
            })
            //END Handel category selection
@@ -80,6 +83,8 @@
            //Change the background color of the selected product          
            $('#productsPartialList').on('click', '.product-row', function () {
                
+               //Clear validation messages
+               clearValidationMessages();
                //Highlight selected product
                $('.product-row').removeClass('highlight');
                $(this).addClass('highlight');
@@ -109,6 +114,11 @@
              $("#productsPartialList").load("/products/ProductsByCategoryPartial", {categoryId: categoryId});
              $("#productDetailPartial").empty();
              $("#formSale").hide();
+          }
+         
+         function clearValidationMessages() {
+             $(".validation-summary-errors ul li").empty();
+             $(".validation-summary-errors ul li").hide();
           }
      </script>
 }
