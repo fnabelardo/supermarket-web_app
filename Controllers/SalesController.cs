@@ -22,10 +22,13 @@ public class SalesController : Controller
         return PartialView("_SellProduct", product);
     }
 
-    public IActionResult Sell(int productId, int quantity)
+    public IActionResult Sell(SalesViewModel salesViewModel)
     {
-        //Mock return to change after
-        var product = ProductRepository.GetProductById(productId);
-        return PartialView("_SellProduct", product); ;
+        if (ModelState.IsValid)
+        {
+            //Sell the product
+        }
+
+        return View("Index", salesViewModel);
     }
 }

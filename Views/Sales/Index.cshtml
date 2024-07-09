@@ -3,17 +3,22 @@
 @section title
 {
     <div class="row">
-        <div class="col-7"><h3> Cashier's Console</h3></div>
-        <div class="col-2"><label for="cashier"> Cashier Name:</label></div>
+        <div class="col-7">
+            <h3> Cashier's Console</h3>
+        </div>
+        <div class="col-2">
+            <label for="cashier"> Cashier Name:</label>
+        </div>
         <div class="col-3">
             @* Display Cashier's name here *@
         </div>
-    </div> 
+    </div>
 }
 
 <br/>
 <div class="row">
     <div class="col-4">
+        <div class="text-danger" asp-validation-summary="All"></div>
         @* Category selection *@
         <select asp-for="SelectedCategoryId" class="form-control">
             <option> --- Select ---</option>
@@ -37,7 +42,7 @@
             <input asp-for="SelectedProductId" type="hidden"/>
             <div class="form-group">
                 <label asp-for="QuantityToSell"></label>
-                <input asp-for="QuantityToSell" class="form-control" type="number" min="1" />
+                <input asp-for="QuantityToSell" class="form-control" type="number"/>
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Submit"/>
@@ -45,13 +50,13 @@
         </form>
     </div>
     <div class="col">
-        @* List of transactions *@ 
+        @* List of transactions *@
     </div>
 
 </div>
 
- @section Scripts{
-     <script>
+@section Scripts{
+    <script>
          $(function() {
              //Initialize the form "formSale"
              $("#formSale").hide();
@@ -95,4 +100,4 @@
            //END Handle product selection
          });
      </script>
- }
+}
