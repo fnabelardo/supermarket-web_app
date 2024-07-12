@@ -4,7 +4,7 @@ public static class TransactionsRepository
 {
     private static List<Transaction> _transactions = new List<Transaction>();
 
-    public static IEnumerable<Transaction> GetByDayAndCashier(string cashierName, DateTime date)
+    public static IEnumerable<Transaction> GetByDayAndCashier(DateTime date, string cashierName)
     {
         if (string.IsNullOrWhiteSpace(cashierName))
         {

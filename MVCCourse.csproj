@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Pages\Shared\" />
       <Folder Include="wwwroot\lib\bootstrap\" />
     </ItemGroup>
 
