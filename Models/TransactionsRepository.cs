@@ -3,34 +3,32 @@ namespace MVCCourse.Models;
 public static class TransactionsRepository
 {
     private static List<Transaction> _transactions = new List<Transaction>();
-    
+
     public static IEnumerable<Transaction> GetByDayAndCashier(string cashierName, DateTime date)
     {
         if (string.IsNullOrWhiteSpace(cashierName))
         {
             return _transactions.Where(x => x.TimeStamp.Date == date.Date);
         }
-        else
-        {
-            return _transactions.Where(x =>
-                x.CashierName.ToLower().Contains(cashierName.ToLower()) && x.TimeStamp.Date == date.Date);
-        }
+
+        return _transactions.Where(x =>
+            x.CashierName.ToLower().Contains(cashierName.ToLower()) && x.TimeStamp.Date == date.Date);
     }
-    
+
     public static IEnumerable<Transaction> Search(string cashierName, DateTime startDate, DateTime endDate)
     {
         if (string.IsNullOrWhiteSpace(cashierName))
         {
             return _transactions.Where(x => x.TimeStamp >= startDate.Date && x.TimeStamp <= endDate.Date.AddDays(1));
         }
-        else
-        {
-            return _transactions.Where(x =>
-                x.CashierName.ToLower().Contains(cashierName.ToLower()) && x.TimeStamp >= startDate.Date && x.TimeStamp <= endDate.Date.AddDays(1));
-        }
+
+        return _transactions.Where(x =>
+            x.CashierName.ToLower().Contains(cashierName.ToLower()) && x.TimeStamp >= startDate.Date &&
+            x.TimeStamp <= endDate.Date.AddDays(1));
     }
 
-    public static void Add(string cashierName, int productId, string productName, double productPrice, int beforeQty, int soldQty)
+    public static void Add(string cashierName, int productId, string productName, double productPrice, int beforeQty,
+        int soldQty)
     {
         var transaction = new Transaction
         {
@@ -52,9 +50,7 @@ public static class TransactionsRepository
         {
             transaction.TransactionId = 1;
         }
+
         _transactions.Add(transaction);
     }
-    
-
-    
 }
