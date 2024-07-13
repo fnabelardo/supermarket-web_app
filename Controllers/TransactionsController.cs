@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MVCCourse.Models;
 using MVCCourse.ViewModels;
 
 namespace MVCCourse.Controllers;
@@ -11,9 +12,15 @@ public class TransactionsController : Controller
         var transactionsViewModel = new TransactionsViewModel();
         return View(transactionsViewModel);
     }
-    
-    public IActionResult Search()
+
+    public IActionResult Search(TransactionsViewModel transactionsViewModel)
     {
-        return View("Index");
+        var transactions = TransactionsRepository.Search(
+            transactionsViewModel.CashierName ?? string.Empty,
+            transactionsViewModel.StartDate,
+            transactionsViewModel.EndDate
+        );
+        transactionsViewModel.Transactions = transactions;
+        return View("Index", transactionsViewModel);
     }
 }

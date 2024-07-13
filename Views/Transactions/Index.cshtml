@@ -31,7 +31,6 @@
 
 <br/>
 
-
 <table class="table">
     <thead>
     <tr>
@@ -51,15 +50,14 @@
         @foreach (var transaction in Model.Transactions)
         {
             <tr>
-                <td>@transaction.TimeStamp.ToString("MM/dd/yyyy")</td>
+                <td>@transaction.TimeStamp.ToString("dd/MM/yyyy")</td>
                 <td>@transaction.CashierName</td>
                 <td>@transaction.ProductName</td>
                 <td>@transaction.BeforeQty</td>
                 <td>@transaction.SoldQty</td>
-                <td>@transaction.BeforeQty - @transaction.SoldQty</td>
+                <td>@(transaction.BeforeQty - transaction.SoldQty)</td>
                 <td style="text-align: right">@(string.Format("{0:c}", transaction.Price))</td>
                 <td style="text-align: right">@(string.Format("{0:c}", transaction.SoldQty * transaction.Price))</td>
-
             </tr>
         }
     }
