@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCCourse", "MVCCourse.csproj", "{ECAED9A8-C6B9-410D-84A5-1749E8B6C3BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreBusiness", "CoreBusiness\CoreBusiness.csproj", "{415C7159-9E01-485D-9DC6-6B0F5618BF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "UseCases\UseCases.csproj", "{23B0018D-A943-4154-8D05-5D579009DB83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{ECAED9A8-C6B9-410D-84A5-1749E8B6C3BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECAED9A8-C6B9-410D-84A5-1749E8B6C3BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECAED9A8-C6B9-410D-84A5-1749E8B6C3BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{415C7159-9E01-485D-9DC6-6B0F5618BF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{415C7159-9E01-485D-9DC6-6B0F5618BF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{415C7159-9E01-485D-9DC6-6B0F5618BF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{415C7159-9E01-485D-9DC6-6B0F5618BF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23B0018D-A943-4154-8D05-5D579009DB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B0018D-A943-4154-8D05-5D579009DB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B0018D-A943-4154-8D05-5D579009DB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B0018D-A943-4154-8D05-5D579009DB83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
