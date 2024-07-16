@@ -20,4 +20,15 @@
       <AdditionalFiles Include="Views\Products\Edit.cshtml" />
       <AdditionalFiles Include="Views\Products\Index.cshtml" />
     </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\bin\Debug\net8.0\appsettings.Development.json" />
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\bin\Debug\net8.0\appsettings.json" />
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\bin\Debug\net8.0\WebApplication1.deps.json" />
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\bin\Debug\net8.0\WebApplication1.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\obj\Debug\net8.0\staticwebassets.build.json" />
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\obj\WebApplication1.csproj.nuget.dgspec.json" />
+    </ItemGroup>
 </Project>

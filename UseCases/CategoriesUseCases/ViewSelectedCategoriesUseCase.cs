@@ -12,7 +12,7 @@ public class ViewSelectedCategoriesUseCase
         _categoryRepository = categoryRepository;
     }
 
-    public Category Execute(int categoryId)
+    public Category? Execute(int categoryId)
     {
         return _categoryRepository.GetCategoryById(categoryId);
     }

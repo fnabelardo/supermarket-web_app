@@ -1,3 +1,4 @@
+using CoreBusiness;
 using UseCases.DataStorePluginInterfaces;
 
 namespace UseCases.CategoriesUseCases;
@@ -11,8 +12,8 @@ public class AddCategoryUseCase
         _categoryRepository = categoryRepository;
     }
     
-    public void Execute(int categoryId)
+    public void Execute(Category category)
     {
-        _categoryRepository.AddCategory(categoryId);
+        _categoryRepository.AddCategory(category);
     }
 }
