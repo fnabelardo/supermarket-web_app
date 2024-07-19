@@ -1,14 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using MVCCourse.Models;
+using UseCases.CategoriesUseCases;
 
 namespace MVCCourse.Controllers;
 
 public class CategoriesController : Controller
 {
+    private readonly IViewCategoriesUseCase _viewCategoriesUseCase;
+
+    public CategoriesController(IViewCategoriesUseCase viewCategoriesUseCase)
+    {
+        _viewCategoriesUseCase = viewCategoriesUseCase;
+    }
+    
     // GET
     public IActionResult Index()
     {
-        var categories = CategoriesRepository.GetCategories();
+        var categories = _viewCategoriesUseCase.Execute();
         return View(categories);
     }
 
