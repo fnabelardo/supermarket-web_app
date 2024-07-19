@@ -5,8 +5,8 @@ using UseCases.DataStorePluginInterfaces;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
-/*builder.Services.AddSingleton<ICategoryRepository, CategoryInMemoryRepository>;*/
-/*builder.Services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();*/
+builder.Services.AddSingleton<ICategoryRepository, CategoryInMemoryRepository>;
+builder.Services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();
 
 var app = builder.Build();
 
