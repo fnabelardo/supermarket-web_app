@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCCourse", "MVCCourse.csproj", "{ECAED9A8-C6B9-410D-84A5-1749E8B6C3BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreBusiness", "CoreBusiness\CoreBusiness.csproj", "{415C7159-9E01-485D-9DC6-6B0F5618BF25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreBusiness", "..\CoreBusiness\CoreBusiness.csproj", "{415C7159-9E01-485D-9DC6-6B0F5618BF25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "UseCases\UseCases.csproj", "{23B0018D-A943-4154-8D05-5D579009DB83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "..\UseCases\UseCases.csproj", "{23B0018D-A943-4154-8D05-5D579009DB83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.DataStore.InMemory", "Plugins\Plugins.DataStore.InMemory\Plugins.DataStore.InMemory.csproj", "{66A63BF4-3774-4DA8-9908-D009CFBF2B35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins.DataStore.InMemory", "..\Plugins\Plugins.DataStore.InMemory\Plugins.DataStore.InMemory.csproj", "{66A63BF4-3774-4DA8-9908-D009CFBF2B35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

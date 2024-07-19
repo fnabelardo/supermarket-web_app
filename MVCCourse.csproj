@@ -4,6 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
 
     <ItemGroup>
@@ -31,4 +33,11 @@
       <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\obj\project.packagespec.json" />
       <_ContentIncludedByDefault Remove="WebApplication1\WebApplication1\obj\WebApplication1.csproj.nuget.dgspec.json" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CoreBusiness\CoreBusiness.csproj" />
+      <ProjectReference Include="..\Plugins\Plugins.DataStore.InMemory\Plugins.DataStore.InMemory.csproj" />
+      <ProjectReference Include="..\UseCases\UseCases.csproj" />
+    </ItemGroup>
+
 </Project>
