@@ -17,7 +17,7 @@ public class CategoriesController : Controller
     public IActionResult Index()
     {
         var categories = _viewCategoriesUseCase.Execute();
-        return View(categories);
+        return View(categories as List<CoreBusiness.Category>);
     }
 
     // Model Binding - https://learn.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-8.0
