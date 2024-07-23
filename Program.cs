@@ -6,10 +6,11 @@ using UseCases.DataStorePluginInterfaces;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddTransient<ICategoryRepository, CategoriesInMemoryRepository>();
+builder.Services.AddSingleton<ICategoryRepository, CategoriesInMemoryRepository>();
 builder.Services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();
 builder.Services.AddTransient<IViewSelectedCategoriesUseCase, ViewSelectedCategoriesUseCase>();
 builder.Services.AddTransient<IEditCategoryUseCase, EditCategoryUseCase>();
+builder.Services.AddTransient<IAddCategoryUseCase, AddCategoryUseCase>();
 
 var app = builder.Build();
 

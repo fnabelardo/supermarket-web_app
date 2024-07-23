@@ -9,14 +9,16 @@ public class CategoriesController : Controller
     private readonly IViewCategoriesUseCase _viewCategoriesUseCase;
     private readonly IViewSelectedCategoriesUseCase _viewSelectedCategoriesUseCase;
     private readonly IEditCategoryUseCase _editCategoryUseCase;
+    private readonly IAddCategoryUseCase _addCategoryUseCase;
 
     public CategoriesController(IViewCategoriesUseCase viewCategoriesUseCase,
         IViewSelectedCategoriesUseCase viewSelectedCategoriesUseCase,
-        IEditCategoryUseCase editCategoryUseCase)
+        IEditCategoryUseCase editCategoryUseCase, IAddCategoryUseCase addCategoryUseCase)
     {
         _viewCategoriesUseCase = viewCategoriesUseCase;
         _viewSelectedCategoriesUseCase = viewSelectedCategoriesUseCase;
         _editCategoryUseCase = editCategoryUseCase;
+        _addCategoryUseCase = addCategoryUseCase;
     }
 
     // GET
@@ -56,11 +58,11 @@ public class CategoriesController : Controller
     }
 
     [HttpPost]
-    public IActionResult Add(Category category)
+    public IActionResult Add(CoreBusiness.Category category)
     {
         if (ModelState.IsValid)
         {
-            CategoriesRepository.AddCategory(category);
+            _addCategoryUseCase.Execute(category);
             return RedirectToAction(nameof(Index));
         }
 
