@@ -10,15 +10,18 @@ public class CategoriesController : Controller
     private readonly IViewSelectedCategoriesUseCase _viewSelectedCategoriesUseCase;
     private readonly IEditCategoryUseCase _editCategoryUseCase;
     private readonly IAddCategoryUseCase _addCategoryUseCase;
+    private readonly IDeleteCategoryUseCase _deleteCategoryUseCase;
 
     public CategoriesController(IViewCategoriesUseCase viewCategoriesUseCase,
         IViewSelectedCategoriesUseCase viewSelectedCategoriesUseCase,
-        IEditCategoryUseCase editCategoryUseCase, IAddCategoryUseCase addCategoryUseCase)
+        IEditCategoryUseCase editCategoryUseCase, IAddCategoryUseCase addCategoryUseCase,
+        IDeleteCategoryUseCase deleteCategoryUseCase)
     {
         _viewCategoriesUseCase = viewCategoriesUseCase;
         _viewSelectedCategoriesUseCase = viewSelectedCategoriesUseCase;
         _editCategoryUseCase = editCategoryUseCase;
         _addCategoryUseCase = addCategoryUseCase;
+        _deleteCategoryUseCase = deleteCategoryUseCase;
     }
 
     // GET
@@ -71,7 +74,7 @@ public class CategoriesController : Controller
 
     public IActionResult Delete(int categoryId)
     {
-        CategoriesRepository.DeleteCategory(categoryId);
+        _deleteCategoryUseCase.Execute(categoryId);
         return RedirectToAction(nameof(Index));
     }
 }
