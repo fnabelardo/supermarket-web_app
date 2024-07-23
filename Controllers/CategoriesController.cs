@@ -7,12 +7,18 @@ namespace MVCCourse.Controllers;
 public class CategoriesController : Controller
 {
     private readonly IViewCategoriesUseCase _viewCategoriesUseCase;
+    private readonly IViewSelectedCategoriesUseCase _viewSelectedCategoriesUseCase;
+    private readonly IEditCategoryUseCase _editCategoryUseCase;
 
-    public CategoriesController(IViewCategoriesUseCase viewCategoriesUseCase)
+    public CategoriesController(IViewCategoriesUseCase viewCategoriesUseCase,
+        IViewSelectedCategoriesUseCase viewSelectedCategoriesUseCase,
+        IEditCategoryUseCase editCategoryUseCase)
     {
         _viewCategoriesUseCase = viewCategoriesUseCase;
+        _viewSelectedCategoriesUseCase = viewSelectedCategoriesUseCase;
+        _editCategoryUseCase = editCategoryUseCase;
     }
-    
+
     // GET
     public IActionResult Index()
     {
@@ -27,19 +33,16 @@ public class CategoriesController : Controller
     public IActionResult Edit(int? id)
     {
         ViewBag.Action = "Edit";
-        var category =
-            CategoriesRepository.GetCategoryById(id.HasValue
-                ? id.Value
-                : 0); //## id.HasValue ? id.Value : 0 => id ?? 0 (Null-coalescing expression) 
+        var category = _viewSelectedCategoriesUseCase.Execute(id ?? 0);
         return View(category);
     }
 
     [HttpPost]
-    public IActionResult Edit(Category category)
+    public IActionResult Edit(CoreBusiness.Category category)
     {
         if (ModelState.IsValid)
         {
-            CategoriesRepository.UpdateCategory(category.CategoryId, category);
+            _editCategoryUseCase.Execute(category.CategoryId, category);
             return RedirectToAction(nameof(Index));
         }
 
