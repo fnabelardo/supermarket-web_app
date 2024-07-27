@@ -1,16 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using MVCCourse.Models;
 using MVCCourse.ViewModels;
+using UseCases.ProductsUseCases;
 
 namespace MVCCourse.Controllers;
 
 public class ProductsController : Controller
 {
+    private readonly IViewProductsUseCase _viewProductsUseCase;
+
+    public ProductsController(IViewProductsUseCase viewProductsUseCase)
+    {
+        _viewProductsUseCase = viewProductsUseCase;
+    }
+    
     // GET
     public IActionResult Index()
     {
-        var products = ProductRepository.GetProducts(loadCategory: true);
-        return View(products);
+        var products = _viewProductsUseCase.Execute(loadCategory: true);
+        return View(products as List<CoreBusiness.Product>);
     }
 
     // Model Binding - https://learn.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-8.0
