@@ -20,6 +20,7 @@ builder.Services.AddTransient<IViewSelectedProductsUseCase, ViewSelectedProducts
 builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
 builder.Services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
+builder.Services.AddTransient<IViewProductsInCategoryUseCase, ViewProductsInCategoryUseCase>();
 
 var app = builder.Build();
 

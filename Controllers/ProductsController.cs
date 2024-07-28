@@ -14,10 +14,12 @@ public class ProductsController : Controller
     private readonly IAddProductUseCase _addProductUseCase;
     private readonly IEditProductUseCase _editProductUseCase;
     private readonly IDeleteProductUseCase _deleteProductUseCase;
+    private readonly IViewProductsInCategoryUseCase _viewProductsInCategoryUseCase;
 
     public ProductsController(IViewProductsUseCase viewProductsUseCase, IViewCategoriesUseCase viewCategoriesUseCase,
         IViewSelectedProductsUseCase viewSelectedProductsUseCase, IAddProductUseCase addProductUseCase,
-        IEditProductUseCase editProductUseCase, IDeleteProductUseCase deleteProductUseCase)
+        IEditProductUseCase editProductUseCase, IDeleteProductUseCase deleteProductUseCase,
+        IViewProductsInCategoryUseCase viewProductsInCategoryUseCase)
     {
         _viewProductsUseCase = viewProductsUseCase;
         _viewCategoriesUseCase = viewCategoriesUseCase;
@@ -25,6 +27,7 @@ public class ProductsController : Controller
         _addProductUseCase = addProductUseCase;
         _editProductUseCase = editProductUseCase;
         _deleteProductUseCase = deleteProductUseCase;
+        _viewProductsInCategoryUseCase = viewProductsInCategoryUseCase;
     }
 
     // GET
@@ -97,7 +100,7 @@ public class ProductsController : Controller
 
     public IActionResult ProductsByCategoryPartial(int categoryId)
     {
-        var products = ProductRepository.GetProductsByCategoryId(categoryId);
+        var products = _viewProductsInCategoryUseCase.Execute(categoryId);
         return PartialView("_Products", products);
     }
 }
