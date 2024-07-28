@@ -17,6 +17,8 @@ builder.Services.AddTransient<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
 builder.Services.AddSingleton<IProductRepository, ProductsInMemoryRepository>();
 builder.Services.AddTransient<IViewProductsUseCase, ViewProductsUseCase>();
 builder.Services.AddTransient<IViewSelectedProductsUseCase, ViewSelectedProductsUseCase>();
+builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
+builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
 
 var app = builder.Build();
 
