@@ -13,15 +13,18 @@ public class ProductsController : Controller
     private readonly IViewSelectedProductsUseCase _viewSelectedProductsUseCase;
     private readonly IAddProductUseCase _addProductUseCase;
     private readonly IEditProductUseCase _editProductUseCase;
+    private readonly IDeleteProductUseCase _deleteProductUseCase;
 
     public ProductsController(IViewProductsUseCase viewProductsUseCase, IViewCategoriesUseCase viewCategoriesUseCase,
-        IViewSelectedProductsUseCase viewSelectedProductsUseCase, IAddProductUseCase addProductUseCase, IEditProductUseCase editProductUseCase)
+        IViewSelectedProductsUseCase viewSelectedProductsUseCase, IAddProductUseCase addProductUseCase,
+        IEditProductUseCase editProductUseCase, IDeleteProductUseCase deleteProductUseCase)
     {
         _viewProductsUseCase = viewProductsUseCase;
         _viewCategoriesUseCase = viewCategoriesUseCase;
         _viewSelectedProductsUseCase = viewSelectedProductsUseCase;
         _addProductUseCase = addProductUseCase;
         _editProductUseCase = editProductUseCase;
+        _deleteProductUseCase = deleteProductUseCase;
     }
 
     // GET
@@ -88,7 +91,7 @@ public class ProductsController : Controller
 
     public IActionResult Delete(int productId)
     {
-        ProductRepository.DeleteProduct(productId);
+        _deleteProductUseCase.Execute(productId);
         return RedirectToAction(nameof(Index));
     }
 
