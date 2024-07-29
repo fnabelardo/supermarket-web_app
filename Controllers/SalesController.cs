@@ -1,30 +1,44 @@
 using Microsoft.AspNetCore.Mvc;
 using MVCCourse.Models;
 using MVCCourse.ViewModels;
+using UseCases.CategoriesUseCases;
+using UseCases.ProductsUseCases;
 
 namespace MVCCourse.Controllers;
 
 public class SalesController : Controller
 {
+    private readonly IViewSelectedProductsUseCase _viewSelectedProductsUseCase;
+    private readonly IViewCategoriesUseCase _viewCategoriesUseCase;
+    private readonly IEditProductUseCase _editProductUseCase;
+
+    public SalesController(IViewSelectedProductsUseCase viewSelectedProductsUseCase,
+        IViewCategoriesUseCase viewCategoriesUseCase, IEditProductUseCase editProductUseCase)
+    {
+        _viewSelectedProductsUseCase = viewSelectedProductsUseCase;
+        _viewCategoriesUseCase = viewCategoriesUseCase;
+        _editProductUseCase = editProductUseCase;
+    }
+
     // GET
     public IActionResult Index()
     {
         var salesViewModel = new SalesViewModel()
         {
-            Categories = CategoriesRepository.GetCategories()
+            Categories = _viewCategoriesUseCase.Execute()
         };
         return View(salesViewModel);
     }
 
     public IActionResult SellProductPartial(int productId)
     {
-        var product = ProductRepository.GetProductById(productId);
+        var product = _viewSelectedProductsUseCase.Execute(productId);
         return PartialView("_SellProduct", product);
     }
 
     public IActionResult Sell(SalesViewModel salesViewModel)
     {
-        var product = ProductRepository.GetProductById(salesViewModel.SelectedProductId);
+        var product = _viewSelectedProductsUseCase.Execute(salesViewModel.SelectedProductId);
 
         if (ModelState.IsValid)
         {
@@ -40,12 +54,12 @@ public class SalesController : Controller
                     salesViewModel.QuantityToSell);
 
                 product.Quantity -= salesViewModel.QuantityToSell;
-                ProductRepository.UpdateProduct(salesViewModel.SelectedProductId, product);
+                _editProductUseCase.Execute(salesViewModel.SelectedProductId, product);
             }
         }
 
         salesViewModel.SelectedCategoryId = product?.CategoryId == null ? 0 : product.CategoryId.Value;
-        salesViewModel.Categories = CategoriesRepository.GetCategories();
+        salesViewModel.Categories = _viewCategoriesUseCase.Execute();
         return View("Index", salesViewModel);
     }
 }
