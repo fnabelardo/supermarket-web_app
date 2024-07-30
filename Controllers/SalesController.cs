@@ -3,6 +3,7 @@ using MVCCourse.Models;
 using MVCCourse.ViewModels;
 using UseCases.CategoriesUseCases;
 using UseCases.ProductsUseCases;
+using UseCases.TransactionsUseCases;
 
 namespace MVCCourse.Controllers;
 
@@ -11,13 +12,16 @@ public class SalesController : Controller
     private readonly IViewSelectedProductsUseCase _viewSelectedProductsUseCase;
     private readonly IViewCategoriesUseCase _viewCategoriesUseCase;
     private readonly IEditProductUseCase _editProductUseCase;
+    private readonly IRecordTransactionUseCase _recordTransactionUseCase;
 
     public SalesController(IViewSelectedProductsUseCase viewSelectedProductsUseCase,
-        IViewCategoriesUseCase viewCategoriesUseCase, IEditProductUseCase editProductUseCase)
+        IViewCategoriesUseCase viewCategoriesUseCase, IEditProductUseCase editProductUseCase,
+        IRecordTransactionUseCase recordTransactionUseCase)
     {
         _viewSelectedProductsUseCase = viewSelectedProductsUseCase;
         _viewCategoriesUseCase = viewCategoriesUseCase;
         _editProductUseCase = editProductUseCase;
+        _recordTransactionUseCase = recordTransactionUseCase;
     }
 
     // GET
@@ -45,7 +49,7 @@ public class SalesController : Controller
             //Sell the product
             if (product != null)
             {
-                TransactionsRepository.Add(
+                _recordTransactionUseCase.Execute(
                     "Cashier1",
                     salesViewModel.SelectedProductId,
                     product.Name,

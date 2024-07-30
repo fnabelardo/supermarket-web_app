@@ -1,8 +1,10 @@
 using CoreBusiness;
+using MVCCourse.Models;
 using Plugins.DataStore.InMemory;
 using UseCases.CategoriesUseCases;
 using UseCases.DataStorePluginInterfaces;
 using UseCases.ProductsUseCases;
+using UseCases.TransactionsUseCases;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -21,6 +23,10 @@ builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
 builder.Services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
 builder.Services.AddTransient<IViewProductsInCategoryUseCase, ViewProductsInCategoryUseCase>();
+
+builder.Services.AddSingleton<ITransactionRepository, TransactionsInMemoryRepository>();
+builder.Services.AddTransient<IRecordTransactionUseCase, RecordTransactionUseCase>();
+builder.Services.AddTransient<IGetByDayAndCashierTransactionsUseCase, GetByDayAndCashierTransactionsUseCase>();
 
 var app = builder.Build();
 
