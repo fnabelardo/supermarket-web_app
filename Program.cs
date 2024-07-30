@@ -27,6 +27,7 @@ builder.Services.AddTransient<IViewProductsInCategoryUseCase, ViewProductsInCate
 builder.Services.AddSingleton<ITransactionRepository, TransactionsInMemoryRepository>();
 builder.Services.AddTransient<IRecordTransactionUseCase, RecordTransactionUseCase>();
 builder.Services.AddTransient<IGetByDayAndCashierTransactionsUseCase, GetByDayAndCashierTransactionsUseCase>();
+builder.Services.AddTransient<ISearchTransactionsUseCase, SearchTransactionsUseCase>();
 
 var app = builder.Build();
 

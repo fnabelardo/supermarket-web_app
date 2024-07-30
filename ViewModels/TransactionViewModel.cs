@@ -11,5 +11,5 @@ public class TransactionsViewModel
 
     [Display(Name = "End Date")] public DateTime EndDate { get; set; } = DateTime.Now;
 
-    public IEnumerable<Transaction> Transactions { get; set; }
+    public IEnumerable<CoreBusiness.Transaction> Transactions { get; set; }
 }
