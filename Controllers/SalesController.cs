@@ -13,15 +13,17 @@ public class SalesController : Controller
     private readonly IViewCategoriesUseCase _viewCategoriesUseCase;
     private readonly IEditProductUseCase _editProductUseCase;
     private readonly IRecordTransactionUseCase _recordTransactionUseCase;
+    private readonly ISellProductUseCase _sellProductUseCase;
 
     public SalesController(IViewSelectedProductsUseCase viewSelectedProductsUseCase,
         IViewCategoriesUseCase viewCategoriesUseCase, IEditProductUseCase editProductUseCase,
-        IRecordTransactionUseCase recordTransactionUseCase)
+        IRecordTransactionUseCase recordTransactionUseCase, ISellProductUseCase sellProductUseCase)
     {
         _viewSelectedProductsUseCase = viewSelectedProductsUseCase;
         _viewCategoriesUseCase = viewCategoriesUseCase;
         _editProductUseCase = editProductUseCase;
         _recordTransactionUseCase = recordTransactionUseCase;
+        _sellProductUseCase = sellProductUseCase;
     }
 
     // GET
@@ -42,28 +44,17 @@ public class SalesController : Controller
 
     public IActionResult Sell(SalesViewModel salesViewModel)
     {
-        var product = _viewSelectedProductsUseCase.Execute(salesViewModel.SelectedProductId);
-
         if (ModelState.IsValid)
         {
             //Sell the product
-            if (product != null)
-            {
-                _recordTransactionUseCase.Execute(
-                    "Cashier1",
-                    salesViewModel.SelectedProductId,
-                    product.Name,
-                    product.Price.HasValue ? product.Price.Value : 0,
-                    product.Quantity.HasValue ? product.Quantity.Value : 0,
-                    salesViewModel.QuantityToSell);
-
-                product.Quantity -= salesViewModel.QuantityToSell;
-                _editProductUseCase.Execute(salesViewModel.SelectedProductId, product);
-            }
+            _sellProductUseCase.Execute("Cashier1", salesViewModel.SelectedProductId,
+                salesViewModel.QuantityToSell);
         }
 
+        var product = _viewSelectedProductsUseCase.Execute(salesViewModel.SelectedProductId);
         salesViewModel.SelectedCategoryId = product?.CategoryId == null ? 0 : product.CategoryId.Value;
         salesViewModel.Categories = _viewCategoriesUseCase.Execute();
+
         return View("Index", salesViewModel);
     }
 }

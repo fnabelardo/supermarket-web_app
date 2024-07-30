@@ -23,6 +23,7 @@ builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
 builder.Services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
 builder.Services.AddTransient<IViewProductsInCategoryUseCase, ViewProductsInCategoryUseCase>();
+builder.Services.AddTransient<ISellProductUseCase, SellProductUseCase>();
 
 builder.Services.AddSingleton<ITransactionRepository, TransactionsInMemoryRepository>();
 builder.Services.AddTransient<IRecordTransactionUseCase, RecordTransactionUseCase>();
