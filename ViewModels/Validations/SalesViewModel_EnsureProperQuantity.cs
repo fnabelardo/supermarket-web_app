@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using MVCCourse.Models;
+using UseCases.ProductsUseCases;
 
 namespace MVCCourse.ViewModels.Validations;
 
@@ -16,19 +17,25 @@ public class SalesViewModel_EnsureProperQuantity : ValidationAttribute
                 return new ValidationResult("The quantity to sell has to be greater than zero");
             }
 
-            var productToSell = ProductRepository.GetProductById(salesViewModel.SelectedProductId);
+            var getProductByIdUseCase =
+                validationContext.GetService(typeof(IViewSelectedProductsUseCase)) as IViewSelectedProductsUseCase;
 
-            if (productToSell != null)
+            if (getProductByIdUseCase != null)
             {
-                if (salesViewModel.QuantityToSell > productToSell.Quantity)
+                var productToSell = getProductByIdUseCase.Execute(salesViewModel.SelectedProductId);
+
+                if (productToSell != null)
                 {
-                    return new ValidationResult(
-                        $"{productToSell.Name} only has {productToSell.Quantity} left. It is not enough");
+                    if (salesViewModel.QuantityToSell > productToSell.Quantity)
+                    {
+                        return new ValidationResult(
+                            $"{productToSell.Name} only has {productToSell.Quantity} left. It is not enough");
+                    }
                 }
-            }
-            else
-            {
-                return new ValidationResult("The selected product doesn't exist.");
+                else
+                {
+                    return new ValidationResult("The selected product doesn't exist.");
+                }
             }
         }
 
