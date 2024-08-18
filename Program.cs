@@ -1,12 +1,20 @@
 using CoreBusiness;
+using Microsoft.EntityFrameworkCore;
 using MVCCourse.Models;
 using Plugins.DataStore.InMemory;
+using Plugins.DataStore.SQL;
 using UseCases.CategoriesUseCases;
 using UseCases.DataStorePluginInterfaces;
 using UseCases.ProductsUseCases;
 using UseCases.TransactionsUseCases;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<MarketContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MarketManagement"));
+});
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<ICategoryRepository, CategoriesInMemoryRepository>();
